@@ -23,6 +23,9 @@ class RickandMortyViewModel : ViewModel() {
         getCharacterbyId()
     }
 
+    /**
+     * Fetches character details by Id from the API
+     */
     fun getCharacterbyId() {
         RetrofitInstance.rickandMortyService.getCharacterbyID()
             .enqueue(object : retrofit2.Callback<Character> {

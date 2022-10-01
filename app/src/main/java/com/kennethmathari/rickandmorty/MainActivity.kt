@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
+        //Observe the character result live data from the view model
         rickandMortyViewModel.characterResult.observe(this) { characterResult ->
             if (characterResult.isSuccessful && characterResult.body() != null) {
                 val character = characterResult.body()
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //Observe the error detail live data from the view model
         rickandMortyViewModel.errorDetail.observe(this) { errorDetail ->
             showSnackBar("Network Error")
             Log.e("ErrorDetails:", errorDetail)

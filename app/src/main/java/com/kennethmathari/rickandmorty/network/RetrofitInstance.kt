@@ -5,11 +5,12 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
+// Base URL for the Rick and Morty API
 const val base_url: String ="https://rickandmortyapi.com/api/"
 //moshi instance
 val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
+//retrofit instance
 val retrofit: Retrofit = Retrofit.Builder()
     .baseUrl(base_url)
     .addConverterFactory(MoshiConverterFactory.create(moshi))
