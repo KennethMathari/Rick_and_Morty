@@ -35,6 +35,12 @@ class MainActivity : AppCompatActivity() {
                 activityMainBinding.characterLocation.text = character.location.name
                 activityMainBinding.characterType.text = character.type
 
+                if(character.gender.equals("male",true)){
+                    activityMainBinding.characterGender.setImageResource(R.drawable.ic_male_24)
+                }else{
+                    activityMainBinding.characterGender.setImageResource(R.drawable.ic_female_24)
+                }
+
                 Picasso.get()
                     .load(character.image)
                     .into(activityMainBinding.characterImage)
