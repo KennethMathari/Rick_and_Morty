@@ -26,9 +26,14 @@ class MainActivity : AppCompatActivity() {
         //Observe the character result live data from the view model
         rickandMortyViewModel.characterResult.observe(this) { characterResult ->
             if (characterResult.isSuccessful && characterResult.body() != null) {
-                val character = characterResult.body()
-                activityMainBinding.tvName.text = character?.name
-                Log.e("CharacterName:", "${character?.name}")
+                val character = characterResult.body()!!
+                activityMainBinding.characterName.text = character.name
+                activityMainBinding.characterStatus.text = character.status
+                activityMainBinding.characterSpecies.text = character.species
+                activityMainBinding.characterOrigin.text = character.origin.name
+                activityMainBinding.characterLocation.text = character.location.name
+                activityMainBinding.characterType.text = character.type
+                Log.e("CharacterName:", "${character.name}")
             } else {
                 showSnackBar("Unable to fetch character from server")
                 Log.e("Error:", "${characterResult.errorBody()}")
