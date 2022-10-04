@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kennethmathari.rickandmorty.databinding.ActivityMainBinding
 import com.kennethmathari.rickandmorty.utils.showSnackBar
 import com.kennethmathari.rickandmorty.viewmodel.RickandMortyViewModel
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private val activityMainBinding by lazy {
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
                 activityMainBinding.characterOrigin.text = character.origin.name
                 activityMainBinding.characterLocation.text = character.location.name
                 activityMainBinding.characterType.text = character.type
+
+                Picasso.get()
+                    .load(character.image)
+                    .into(activityMainBinding.characterImage)
+
                 Log.e("CharacterName:", "${character.name}")
             } else {
                 showSnackBar("Unable to fetch character from server")
