@@ -26,30 +26,34 @@ class MainActivity : AppCompatActivity() {
     private fun initObserver() {
         //Observe the character result live data from the view model
         rickandMortyViewModel.characterResult.observe(this) { characterResult ->
-            if (characterResult.isSuccessful && characterResult.body() != null) {
-                val character = characterResult.body()!!
-                activityMainBinding.characterName.text = character.name
-                activityMainBinding.characterStatus.text = character.status
-                activityMainBinding.characterSpecies.text = character.species
-                activityMainBinding.characterOrigin.text = character.origin.name
-                activityMainBinding.characterLocation.text = character.location.name
-                activityMainBinding.characterType.text = character.type
-
-                if(character.gender.equals("male",true)){
-                    activityMainBinding.characterGender.setImageResource(R.drawable.ic_male_24)
-                }else{
-                    activityMainBinding.characterGender.setImageResource(R.drawable.ic_female_24)
-                }
-
-                Picasso.get()
-                    .load(character.image)
-                    .into(activityMainBinding.characterImage)
-
-                Log.e("CharacterName:", "${character.name}")
-            } else {
-                showSnackBar("Unable to fetch character from server")
-                Log.e("Error:", "${characterResult.errorBody()}")
+            //Check if the character result is null
+            if (characterResult == null){
+                //Show a snackbar with the error message
+                showSnackBar("Error fetching character")
+                return@observe
             }
+
+            //Set the character details to the views
+            activityMainBinding.apply {
+                characterName.text = characterResult.name
+                characterStatus.text = characterResult.status
+                characterSpecies.text = characterResult.species
+                characterOrigin.text = characterResult.origin.name
+                characterLocation.text = characterResult.location.name
+                characterType.text = characterResult.type
+            }
+
+            //check for character gender
+            if(characterResult.gender.equals("male",true)){
+                activityMainBinding.characterGender.setImageResource(R.drawable.ic_male_24)
+            }else{
+                activityMainBinding.characterGender.setImageResource(R.drawable.ic_female_24)
+            }
+
+            //Load the character image to UI using picasso
+            Picasso.get()
+                .load(characterResult.image)
+                .into(activityMainBinding.characterImage)
         }
 
         //Observe the error detail live data from the view model

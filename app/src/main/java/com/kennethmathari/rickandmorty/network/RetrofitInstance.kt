@@ -6,7 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 // Base URL for the Rick and Morty API
-const val base_url: String ="https://rickandmortyapi.com/api/"
+const val base_url: String = "https://rickandmortyapi.com/api/"
+
 //moshi instance
 val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
@@ -23,4 +24,6 @@ object RetrofitInstance {
     val rickandMortyService: RickandMortyService by lazy {
         retrofit.create(RickandMortyService::class.java)
     }
+
+    val apiClient = ApiClient(rickandMortyService)
 }
