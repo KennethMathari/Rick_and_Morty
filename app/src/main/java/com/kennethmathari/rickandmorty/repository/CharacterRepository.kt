@@ -11,9 +11,9 @@ class CharacterRepository {
             return null
         }
 
-        if (!request.isSuccessful ) {
+        if (!request.isSuccessful) {
             return null
-        } 
+        }
 
         return request.body
     }

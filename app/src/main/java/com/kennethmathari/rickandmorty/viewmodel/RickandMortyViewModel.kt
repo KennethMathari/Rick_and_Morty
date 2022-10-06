@@ -5,11 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kennethmathari.rickandmorty.model.Character
-import com.kennethmathari.rickandmorty.network.RetrofitInstance
 import com.kennethmathari.rickandmorty.repository.CharacterRepository
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Response
 
 class RickandMortyViewModel : ViewModel() {
 
@@ -17,10 +14,7 @@ class RickandMortyViewModel : ViewModel() {
     private val _characterResult = MutableLiveData<Character?>()
     val characterResult: LiveData<Character?> get() = _characterResult
 
-    //Error message thrown when fetching Character details
-    private val _errorDetail = MutableLiveData<String>()
-    val errorDetail: LiveData<String> get() = _errorDetail
-
+    //CharacterRepository instance
     private val characterRepository = CharacterRepository()
 
     // Init block to fetch character by Id when the [RickandMortyViewModel] is initialized
@@ -29,7 +23,7 @@ class RickandMortyViewModel : ViewModel() {
     }
 
     /**
-     * Fetches character details by Id from the API
+     * Fetches character details by Id from the API via the [CharacterRepository]
      */
     fun getCharacterbyId(characterId: Int) {
         viewModelScope.launch {

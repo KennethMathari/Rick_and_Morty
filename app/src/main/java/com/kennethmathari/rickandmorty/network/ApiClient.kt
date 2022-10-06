@@ -9,6 +9,9 @@ class ApiClient(private val rickandMortyService: RickandMortyService) {
         return safeApiCall { rickandMortyService.getCharacterbyID(characterId) }
     }
 
+    /**
+     * This function is used to make a safe API call
+     */
     private inline fun <T> safeApiCall(
         apiCall: () -> Response<T>,
     ): SimpleResponse<T> {

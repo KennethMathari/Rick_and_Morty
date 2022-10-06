@@ -55,11 +55,5 @@ class MainActivity : AppCompatActivity() {
                 .load(characterResult.image)
                 .into(activityMainBinding.characterImage)
         }
-
-        //Observe the error detail live data from the view model
-        rickandMortyViewModel.errorDetail.observe(this) { errorDetail ->
-            showSnackBar("Network Error")
-            Log.e("ErrorDetails:", errorDetail)
-        }
     }
 }
