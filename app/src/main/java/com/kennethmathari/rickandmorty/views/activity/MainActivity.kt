@@ -1,8 +1,8 @@
-package com.kennethmathari.rickandmorty
+package com.kennethmathari.rickandmorty.views.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.ActivityMainBinding
 import com.kennethmathari.rickandmorty.utils.showSnackBar
 import com.kennethmathari.rickandmorty.viewmodel.RickandMortyViewModel
