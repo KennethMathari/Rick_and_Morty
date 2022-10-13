@@ -6,104 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".views.activity.MainActivity">
 
-    <ImageView
-        android:id="@+id/characterImage"
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/epoxyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/rickandmorty" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <TextView
-        android:id="@+id/characterName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/characterImage"
-        tools:text="Rick Sanchez" />
-
-    <TextView
-        android:id="@+id/characterStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintStart_toStartOf="@id/characterName"
-        app:layout_constraintTop_toBottomOf="@id/characterName"
-        tools:text="Alive"/>
-
-    <ImageView
-        android:id="@+id/characterGender"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/characterName"
-        android:layout_marginEnd="16dp"
-        tools:srcCompat="@drawable/ic_male_24"/>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?colorPrimary"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/characterStatus"
-        app:layout_constraintStart_toStartOf="@id/characterStatus"
-        app:layout_constraintEnd_toEndOf="@id/characterGender"/>
-
-    <TextView
-        android:id="@+id/characterOrigin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
-        android:textSize="28sp"
-        android:textStyle="italic"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintStart_toStartOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        tools:text="Origin" />
-    <TextView
-        android:id="@+id/characterLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
-        android:textSize="18sp"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintStart_toStartOf="@id/characterOrigin"
-        app:layout_constraintTop_toBottomOf="@id/characterOrigin"
-        tools:text="Location" />
-    <TextView
-        android:id="@+id/characterSpecies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
-        android:textSize="24sp"
-        android:textColor="?attr/colorOnBackground"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@id/characterLocation"
-        app:layout_constraintTop_toBottomOf="@id/characterLocation"
-        tools:text="Species" />
-
-    <TextView
-        android:id="@+id/characterType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
-        android:textSize="18sp"
-        android:textColor="?attr/colorOnBackground"
-        app:layout_constraintStart_toStartOf="@id/characterSpecies"
-        app:layout_constraintTop_toBottomOf="@id/characterSpecies"
-        tools:text="Location" />
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
