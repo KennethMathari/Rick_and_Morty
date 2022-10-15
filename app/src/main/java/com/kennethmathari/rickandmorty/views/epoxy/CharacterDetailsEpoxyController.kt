@@ -5,7 +5,7 @@ import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsBodyBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsHeaderBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsImageBinding
-import com.kennethmathari.rickandmorty.model.Character
+import com.kennethmathari.rickandmorty.data.model.Character
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController : EpoxyController() {

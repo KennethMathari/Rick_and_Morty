@@ -1,4 +1,4 @@
-package com.kennethmathari.rickandmorty.model
+package com.kennethmathari.rickandmorty.data.model
 
 import retrofit2.Response
 

@@ -1,7 +1,7 @@
-package com.kennethmathari.rickandmorty.repository
+package com.kennethmathari.rickandmorty.data.repository
 
 import com.kennethmathari.rickandmorty.network.RetrofitInstance
-import com.kennethmathari.rickandmorty.model.Character
+import com.kennethmathari.rickandmorty.data.model.Character
 
 class CharacterRepository {
     suspend fun getCharacterById(characterId: Int): Character? {

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kennethmathari.rickandmorty.model.Character
-import com.kennethmathari.rickandmorty.repository.CharacterRepository
+import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.data.repository.CharacterRepository
 import kotlinx.coroutines.launch
 
 class RickandMortyViewModel : ViewModel() {

@@ -1,4 +1,4 @@
-package com.kennethmathari.rickandmorty.model
+package com.kennethmathari.rickandmorty.data.model
 
 
 import com.squareup.moshi.Json

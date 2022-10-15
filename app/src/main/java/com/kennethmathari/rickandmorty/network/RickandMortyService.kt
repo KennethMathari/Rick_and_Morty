@@ -1,6 +1,6 @@
 package com.kennethmathari.rickandmorty.network
 
-import com.kennethmathari.rickandmorty.model.Character
+import com.kennethmathari.rickandmorty.data.model.Character
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

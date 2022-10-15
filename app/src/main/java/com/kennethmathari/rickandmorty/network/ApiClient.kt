@@ -1,7 +1,7 @@
 package com.kennethmathari.rickandmorty.network
 
-import com.kennethmathari.rickandmorty.model.Character
-import com.kennethmathari.rickandmorty.model.SimpleResponse
+import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.data.model.SimpleResponse
 import retrofit2.Response
 
 class ApiClient(private val rickandMortyService: RickandMortyService) {
