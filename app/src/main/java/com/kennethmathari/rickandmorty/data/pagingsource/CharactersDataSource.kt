@@ -9,16 +9,25 @@ import kotlinx.coroutines.launch
 
 class CharactersDataSource(
     private val coroutineScope: CoroutineScope,
-    private val charactersListRepository: CharactersListRepository
-): PageKeyedDataSource<Int, Character>(){
+    private val charactersListRepository: CharactersListRepository,
+) : PageKeyedDataSource<Int, Character>() {
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Character>,
     ) {
         coroutineScope.launch {
-            val charactersList = charactersListRepository.getCharactersList(1)
-            callback.onResult(charactersList,null,2)
+            val charactersListPage = charactersListRepository.getCharactersListPage(1)
+
+            if (charactersListPage == null) {
+                callback.onResult(emptyList(), null, null)
+                return@launch
+            }
+            callback.onResult(
+                charactersListPage.results,
+                null,
+                getPageIndexFromNext(charactersListPage.info.next)
+            )
         }
     }
 
@@ -28,9 +37,21 @@ class CharactersDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
         coroutineScope.launch {
-            val charactersList = charactersListRepository.getCharactersList(params.key)
-            callback.onResult(charactersList,params.key+1)
+            val charactersListPage = charactersListRepository.getCharactersListPage(1)
+
+            if (charactersListPage == null) {
+                callback.onResult(emptyList(), null)
+                return@launch
+            }
+            callback.onResult(
+                charactersListPage.results,
+                getPageIndexFromNext(charactersListPage.info.next)
+            )
         }
+    }
+
+    private fun getPageIndexFromNext(next: String?): Int? {
+        return next?.split("?page=")?.get(1)?.toInt()
     }
 
 }

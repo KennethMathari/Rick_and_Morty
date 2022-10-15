@@ -1,12 +1,17 @@
 package com.kennethmathari.rickandmorty.network
 
 import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.data.model.CharactersList
 import com.kennethmathari.rickandmorty.data.model.SimpleResponse
 import retrofit2.Response
 
 class ApiClient(private val rickandMortyService: RickandMortyService) {
     suspend fun getCharacterById(characterId: Int): SimpleResponse<Character> {
         return safeApiCall { rickandMortyService.getCharacterbyID(characterId) }
+    }
+
+    suspend fun getCharactersList(pageIndex:Int): SimpleResponse<CharactersList> {
+        return safeApiCall { rickandMortyService.getCharactersList(pageIndex) }
     }
 
     /**

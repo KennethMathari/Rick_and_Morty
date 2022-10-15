@@ -1,9 +1,17 @@
 package com.kennethmathari.rickandmorty.data.repository
 
 import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.data.model.CharactersList
+import com.kennethmathari.rickandmorty.network.RetrofitInstance
 
 class CharactersListRepository {
-    suspend fun getCharactersList(pagedIndex:Int):List<Character>{
-        return emptyList()
+    suspend fun getCharactersListPage(pagedIndex:Int): CharactersList? {
+        val request = RetrofitInstance.apiClient.getCharactersList(pagedIndex)
+
+        if (request.failed || !request.isSuccessful) {
+            return null
+        }
+
+        return request.body
     }
 }
