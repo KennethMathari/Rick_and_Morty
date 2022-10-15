@@ -8,7 +8,7 @@ import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.repository.CharacterRepository
 import kotlinx.coroutines.launch
 
-class RickandMortyViewModel : ViewModel() {
+class CharacterViewModel : ViewModel() {
 
     //Character details
     private val _characterResult = MutableLiveData<Character?>()
