@@ -8,7 +8,9 @@ import com.kennethmathari.rickandmorty.databinding.CharacterItemBinding
 import com.squareup.picasso.Picasso
 
 class CharacterListPagingEpoxyController : PagedListEpoxyController<Character>() {
+
     override fun buildItemModel(currentPosition: Int, item: Character?): EpoxyModel<*> {
+
         return CharacterGridItemEpoxyModel(
             imageUrl = item!!.image,
             name = item.name

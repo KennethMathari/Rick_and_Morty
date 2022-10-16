@@ -12,6 +12,8 @@
         android:id="@+id/epoxyRecyclerView"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
-        tools:itemCount="20"/>
+        tools:itemCount="20"
+        android:padding="8dp"
+        tools:listitem="@layout/character_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
