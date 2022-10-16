@@ -37,7 +37,7 @@ class CharactersDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
         coroutineScope.launch {
-            val charactersListPage = charactersListRepository.getCharactersListPage(1)
+            val charactersListPage = charactersListRepository.getCharactersListPage(params.key)
 
             if (charactersListPage == null) {
                 callback.onResult(emptyList(), null)
