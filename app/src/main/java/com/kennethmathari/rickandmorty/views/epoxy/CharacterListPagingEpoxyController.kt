@@ -9,13 +9,17 @@ import com.kennethmathari.rickandmorty.databinding.CharacterListTitleBinding
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class CharacterListPagingEpoxyController : PagedListEpoxyController<Character>() {
+class CharacterListPagingEpoxyController(
+    private val onCharacterSelected:(Int)->Unit
+) : PagedListEpoxyController<Character>() {
 
     override fun buildItemModel(currentPosition: Int, item: Character?): EpoxyModel<*> {
 
         return CharacterGridItemEpoxyModel(
+            characterId= item!!.id,
             imageUrl = item!!.image,
-            name = item.name
+            name = item.name,
+            onCharacterSelected = onCharacterSelected
         ).id(item.id)
     }
 
@@ -51,12 +55,19 @@ class CharacterListPagingEpoxyController : PagedListEpoxyController<Character>()
     }
 
     data class CharacterGridItemEpoxyModel(
+        val characterId: Int,
         val imageUrl: String,
         val name: String,
+        val onCharacterSelected:(Int)->Unit
     ) : ViewBindingKotlinModel<CharacterItemBinding>(R.layout.character_item) {
         override fun CharacterItemBinding.bind() {
             Picasso.get().load(imageUrl).into(characterImageView)
             characterNameTextView.text = name
+
+            // set onclick listener for each item in the list
+            root.setOnClickListener {
+                onCharacterSelected(characterId)
+            }
         }
     }
 

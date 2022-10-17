@@ -17,11 +17,6 @@ class CharacterViewModel : ViewModel() {
     //CharacterRepository instance
     private val characterRepository = CharacterRepository()
 
-    // Init block to fetch character by Id when the [RickandMortyViewModel] is initialized
-    init {
-        getCharacterbyId(12)
-    }
-
     /**
      * Fetches character details by Id from the API via the [CharacterRepository]
      */

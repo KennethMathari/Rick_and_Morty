@@ -1,8 +1,11 @@
 package com.kennethmathari.rickandmorty.views.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.kennethmathari.rickandmorty.databinding.ActivityMainBinding
+import com.kennethmathari.rickandmorty.utils.Constants
 import com.kennethmathari.rickandmorty.utils.showSnackBar
 import com.kennethmathari.rickandmorty.viewmodel.CharacterViewModel
 import com.kennethmathari.rickandmorty.views.epoxy.CharacterDetailsEpoxyController
@@ -23,9 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activityMainBinding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         initObserver()
 
+        val characterIDFromIntent = intent.getIntExtra(Constants.INTENT_CHARACTERID,1)
+        characterViewModel.getCharacterbyId(characterIDFromIntent)
+
         activityMainBinding.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+
     }
 
     private fun initObserver() {
@@ -42,6 +51,19 @@ class MainActivity : AppCompatActivity() {
                 return@observe
             }
 
+        }
+    }
+
+    /**
+     * Enable back navigation to CharacterList from action bar
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            android.R.id.home ->{
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
