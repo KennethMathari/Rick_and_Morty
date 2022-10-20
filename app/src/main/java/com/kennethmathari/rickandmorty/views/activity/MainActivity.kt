@@ -1,6 +1,5 @@
 package com.kennethmathari.rickandmorty.views.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -39,13 +38,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObserver() {
         //Observe the character result live data from the view model
-        characterViewModel.characterResult.observe(this) { characterResult ->
+        characterViewModel.characterResult.observe(this) { character ->
 
             //Set the character result to the epoxy controller
-            epoxyController.characterResponse = characterResult
+            epoxyController.character = character
 
             //Check if the character result is null
-            if (characterResult == null){
+            if (character == null){
                 //Show a snackbar with the error message
                 showSnackBar("Error fetching character")
                 return@observe

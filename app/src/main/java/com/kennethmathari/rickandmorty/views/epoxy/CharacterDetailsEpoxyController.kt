@@ -5,7 +5,7 @@ import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsBodyBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsHeaderBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsImageBinding
-import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController : EpoxyController() {
@@ -18,7 +18,7 @@ class CharacterDetailsEpoxyController : EpoxyController() {
             }
         }
 
-    var characterResponse: Character? = null
+    var character: CharacterDomainModel? = null
         set(value) {
             field = value
             if (field != null) {
@@ -35,28 +35,28 @@ class CharacterDetailsEpoxyController : EpoxyController() {
             return
         }
 
-        if(characterResponse == null) {
+        if(character == null) {
             //show error
             return
         }
 
         //Image Model
         ImageEpoxyModel(
-            imageUrl = characterResponse!!.image
+            imageUrl = character!!.image
         ).id("image").addTo(this)
 
         //Header Model
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
         ).id("header").addTo(this)
 
         //Body Model
         BodyEpoxyModel(
-            species = characterResponse!!.species,
-            originName = characterResponse!!.origin.name,
-            locationName = characterResponse!!.location.name
+            species = character!!.species,
+            originName = character!!.origin.name,
+            locationName = character!!.location.name
         ).id("body").addTo(this)
     }
 

@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.repository.CharacterRepository
+import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
 import kotlinx.coroutines.launch
 
 class CharacterViewModel : ViewModel() {
 
     //Character details
-    private val _characterResult = MutableLiveData<Character?>()
-    val characterResult: LiveData<Character?> get() = _characterResult
+    private val _characterResult = MutableLiveData<CharacterDomainModel?>()
+    val characterResult: LiveData<CharacterDomainModel?> get() = _characterResult
 
     //CharacterRepository instance
     private val characterRepository = CharacterRepository()

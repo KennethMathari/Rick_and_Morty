@@ -3,7 +3,7 @@ package com.kennethmathari.rickandmorty.data.model
 
 data class CharactersList(
     val info: Info = Info(),
-    val results: List<Character> = emptyList()
+    val results: List<CharacterDomainModel> = emptyList()
 ){
     data class Info(
         val count: Int=0,

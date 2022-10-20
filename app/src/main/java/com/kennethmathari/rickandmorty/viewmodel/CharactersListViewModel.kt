@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.kennethmathari.rickandmorty.data.model.Character
+import com.kennethmathari.rickandmorty.data.model.CharacterDomainModel
 import com.kennethmathari.rickandmorty.data.pagingsource.CharactersDataSourceFactory
 import com.kennethmathari.rickandmorty.data.repository.CharactersListRepository
 import com.kennethmathari.rickandmorty.utils.Constants
@@ -22,6 +22,6 @@ class CharactersListViewModel : ViewModel() {
     private val charactersDataSourceFactory =
         CharactersDataSourceFactory(viewModelScope, charactersListRepository)
 
-    val charactersPagedListLiveData: LiveData<PagedList<Character>> =
+    val charactersPagedListLiveData: LiveData<PagedList<CharacterDomainModel>> =
         LivePagedListBuilder(charactersDataSourceFactory, pageListConfig).build()
 }
