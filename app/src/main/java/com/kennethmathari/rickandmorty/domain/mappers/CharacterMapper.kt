@@ -3,9 +3,10 @@ package com.kennethmathari.rickandmorty.domain.mappers
 import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
 import com.kennethmathari.rickandmorty.domain.models.LocationDomainModel
 import com.kennethmathari.rickandmorty.domain.models.OriginDomainModel
+import com.kennethmathari.rickandmorty.data.model.Character
 
 object CharacterMapper {
-    fun buildFrom(response: com.kennethmathari.rickandmorty.data.model.CharacterDomainModel): CharacterDomainModel {
+    fun buildFrom(response: Character): CharacterDomainModel {
         return CharacterDomainModel(
             episode = emptyList(),
             gender = response.gender,

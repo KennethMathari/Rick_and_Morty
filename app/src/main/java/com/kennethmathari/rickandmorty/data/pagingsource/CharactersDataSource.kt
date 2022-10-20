@@ -2,7 +2,7 @@ package com.kennethmathari.rickandmorty.data.pagingsource
 
 
 import androidx.paging.PageKeyedDataSource
-import com.kennethmathari.rickandmorty.data.model.CharacterDomainModel
+import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.repository.CharactersListRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -10,11 +10,11 @@ import kotlinx.coroutines.launch
 class CharactersDataSource(
     private val coroutineScope: CoroutineScope,
     private val charactersListRepository: CharactersListRepository
-) : PageKeyedDataSource<Int, CharacterDomainModel>() {
+) : PageKeyedDataSource<Int, Character>() {
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, CharacterDomainModel>,
+        callback: LoadInitialCallback<Int, Character>,
     ) {
         coroutineScope.launch {
             val charactersListPage = charactersListRepository.getCharactersListPage(1)
@@ -31,11 +31,11 @@ class CharactersDataSource(
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterDomainModel>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
         TODO("Not yet implemented")
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterDomainModel>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
         coroutineScope.launch {
             val charactersListPage = charactersListRepository.getCharactersListPage(params.key)
 

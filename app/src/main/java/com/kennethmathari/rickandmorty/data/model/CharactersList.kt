@@ -1,9 +1,10 @@
 package com.kennethmathari.rickandmorty.data.model
 
 
+
 data class CharactersList(
     val info: Info = Info(),
-    val results: List<CharacterDomainModel> = emptyList()
+    val results: List<Character> = emptyList()
 ){
     data class Info(
         val count: Int=0,

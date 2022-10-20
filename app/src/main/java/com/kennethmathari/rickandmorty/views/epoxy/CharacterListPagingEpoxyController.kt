@@ -3,7 +3,7 @@ package com.kennethmathari.rickandmorty.views.epoxy
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging.PagedListEpoxyController
 import com.kennethmathari.rickandmorty.R
-import com.kennethmathari.rickandmorty.data.model.CharacterDomainModel
+import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.databinding.CharacterItemBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterListTitleBinding
 import com.squareup.picasso.Picasso
@@ -11,9 +11,9 @@ import java.util.*
 
 class CharacterListPagingEpoxyController(
     private val onCharacterSelected:(Int)->Unit
-) : PagedListEpoxyController<CharacterDomainModel>() {
+) : PagedListEpoxyController<Character>() {
 
-    override fun buildItemModel(currentPosition: Int, item: CharacterDomainModel?): EpoxyModel<*> {
+    override fun buildItemModel(currentPosition: Int, item: Character?): EpoxyModel<*> {
 
         return CharacterGridItemEpoxyModel(
             characterId= item!!.id,

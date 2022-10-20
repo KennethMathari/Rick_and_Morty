@@ -1,6 +1,6 @@
 package com.kennethmathari.rickandmorty.network
 
-import com.kennethmathari.rickandmorty.data.model.CharacterDomainModel
+import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.model.CharactersList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,7 +11,7 @@ interface RickandMortyService {
     @GET("character/{characterId}")
     suspend fun getCharacterbyID(
         @Path("characterId") characterId: Int
-    ): Response<CharacterDomainModel>
+    ): Response<Character>
 
     @GET("character")
     suspend fun getCharactersList(
