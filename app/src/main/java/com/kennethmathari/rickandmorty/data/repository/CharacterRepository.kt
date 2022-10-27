@@ -1,6 +1,6 @@
 package com.kennethmathari.rickandmorty.data.repository
 
-import com.kennethmathari.rickandmorty.network.RetrofitInstance
+import com.kennethmathari.rickandmorty.data.network.RetrofitInstance
 import com.kennethmathari.rickandmorty.domain.mappers.CharacterMapper
 import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
 

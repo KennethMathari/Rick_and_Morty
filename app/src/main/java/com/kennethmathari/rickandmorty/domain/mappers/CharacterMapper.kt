@@ -8,7 +8,7 @@ import com.kennethmathari.rickandmorty.data.model.Character
 object CharacterMapper {
     fun buildFrom(response: Character): CharacterDomainModel {
         return CharacterDomainModel(
-            episode = emptyList(),
+            episodeList = emptyList(),
             gender = response.gender,
             id = response.id,
             image = response.image,
@@ -23,8 +23,6 @@ object CharacterMapper {
             ),
             species = response.species,
             status = response.status,
-            type = response.type,
-            url = response.url
         )
     }
 }

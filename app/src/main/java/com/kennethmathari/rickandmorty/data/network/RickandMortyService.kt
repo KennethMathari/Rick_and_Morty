@@ -1,4 +1,4 @@
-package com.kennethmathari.rickandmorty.network
+package com.kennethmathari.rickandmorty.data.network
 
 import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.model.CharactersList

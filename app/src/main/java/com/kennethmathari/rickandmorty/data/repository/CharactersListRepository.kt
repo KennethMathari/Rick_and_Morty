@@ -1,7 +1,7 @@
 package com.kennethmathari.rickandmorty.data.repository
 
 import com.kennethmathari.rickandmorty.data.model.CharactersList
-import com.kennethmathari.rickandmorty.network.RetrofitInstance
+import com.kennethmathari.rickandmorty.data.network.RetrofitInstance
 
 class CharactersListRepository {
     suspend fun getCharactersListPage(pagedIndex:Int): CharactersList? {
