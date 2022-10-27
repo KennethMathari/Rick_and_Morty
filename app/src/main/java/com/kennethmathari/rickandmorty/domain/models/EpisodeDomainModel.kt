@@ -7,6 +7,5 @@ data class EpisodeDomainModel(
     val created: String,
     val episode: String,
     val id: Int,
-    val name: String,
-    val url: String
+    val name: String
 )

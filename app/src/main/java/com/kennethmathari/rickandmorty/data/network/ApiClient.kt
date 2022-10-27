@@ -2,6 +2,7 @@ package com.kennethmathari.rickandmorty.data.network
 
 import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.model.CharactersList
+import com.kennethmathari.rickandmorty.data.model.Episode
 import com.kennethmathari.rickandmorty.data.model.SimpleResponse
 import retrofit2.Response
 
@@ -12,6 +13,14 @@ class ApiClient(private val rickandMortyService: RickandMortyService) {
 
     suspend fun getCharactersList(pageIndex: Int): SimpleResponse<CharactersList> {
         return safeApiCall { rickandMortyService.getCharactersList(pageIndex) }
+    }
+
+    suspend fun getEpisodeById(episodeID: Int): SimpleResponse<Episode>{
+        return safeApiCall { rickandMortyService.getEpisodebyID(episodeID) }
+    }
+
+    suspend fun getEpisodeRange(episodeRange: String): SimpleResponse<List<Episode>>{
+        return safeApiCall { rickandMortyService.getEpisodeRange(episodeRange) }
     }
 
     /**

@@ -2,6 +2,7 @@ package com.kennethmathari.rickandmorty.data.network
 
 import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.model.CharactersList
+import com.kennethmathari.rickandmorty.data.model.Episode
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,4 +18,14 @@ interface RickandMortyService {
     suspend fun getCharactersList(
         @Query("page") pageIndex: Int
     ): Response<CharactersList>
+
+    @GET("episode/{episodeID}")
+    suspend fun getEpisodebyID(
+        @Path("episodeID") episodeID: Int
+    ): Response<Episode>
+
+    @GET("episode/{episode-range}")
+    suspend fun getEpisodeRange(
+        @Path("episode-range")episodeRange: String
+    ): Response<List<Episode>>
 }
