@@ -1,11 +1,15 @@
 package com.kennethmathari.rickandmorty.views.epoxy
 
+import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
 import com.kennethmathari.rickandmorty.R
+import com.kennethmathari.rickandmorty.data.model.Episode
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsBodyBinding
+import com.kennethmathari.rickandmorty.databinding.CharacterDetailsEpisodesCarouselBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsHeaderBinding
 import com.kennethmathari.rickandmorty.databinding.CharacterDetailsImageBinding
 import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
+import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController : EpoxyController() {
@@ -58,6 +62,21 @@ class CharacterDetailsEpoxyController : EpoxyController() {
             originName = character!!.origin.name,
             locationName = character!!.location.name
         ).id("body").addTo(this)
+
+        //Episode Carousel Model
+        if(character!!.episodeList.isNotEmpty()){
+           val episodeList = character!!.episodeList.map {
+               EpisodeCarouselModel(
+                   episode = it
+               ).id(it.id)
+           }
+            CarouselModel_()
+                .id("episode_carousel")
+                .models(episodeList)
+                .numViewsToShowOnScreen(1.15f)
+                .addTo(this)
+        }
+
     }
 
     data class HeaderEpoxyModel(
@@ -102,4 +121,16 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         }
 
     }
+
+    data class EpisodeCarouselModel(
+        val episode: EpisodeDomainModel
+    ): ViewBindingKotlinModel<CharacterDetailsEpisodesCarouselBinding>(R.layout.character_details_episodes_carousel){
+
+        override fun CharacterDetailsEpisodesCarouselBinding.bind() {
+            episodeTextView.text = episode.episode
+            episodeDetailsTextView.text = "${episode.name}\n${episode.airDate}"
+        }
+    }
 }
+
+
