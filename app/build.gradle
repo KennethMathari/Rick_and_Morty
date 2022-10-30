@@ -38,6 +38,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+    namespace 'com.kennethmathari.rickandmorty'
 }
 
 dependencies {
@@ -71,5 +72,8 @@ dependencies {
     //Pagination
     def paging_version = "2.1.2"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
 }
