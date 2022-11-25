@@ -8,25 +8,59 @@ import com.kennethmathari.rickandmorty.data.repository.CharacterRepository
 import com.kennethmathari.rickandmorty.domain.models.CharacterDomainModel
 import kotlinx.coroutines.launch
 
-class CharacterViewModel : ViewModel() {
+// create a class called CharacterViewModel
+class CharacterViewModel(private val repository: CharacterRepository) : ViewModel() {
 
-    //Character details
-    private val _characterResult = MutableLiveData<CharacterDomainModel?>()
-    val characterResult: LiveData<CharacterDomainModel?> get() = _characterResult
+    // create a live data object that will hold the list of characters
+    private val _characters = MutableLiveData<List<CharacterDomainModel>>()
+    val characters: LiveData<List<CharacterDomainModel>>
+        get() = _characters
 
-    //CharacterRepository instance
-    private val characterRepository = CharacterRepository()
+    // create a live data object that will hold the error message
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
-    /**
-     * Fetches character details by Id from the API via the [CharacterRepository]
-     */
-    fun getCharacterbyId(characterId: Int) {
+    // create a live data object that will hold the loading state
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean>
+        get() = _loading
+
+    // create a function that will fetch the characters from the repository
+    fun getCharacters() {
         viewModelScope.launch {
-            val response = characterRepository.getCharacterById(characterId)
-            _characterResult.value = response
+            _loading.value = true
+            val result = repository.getCharacterById()
+            _loading.value = false
+            if (result.isSuccessful) {
+                _characters.value = result.data
+            } else {
+                _error.value = result.error
+            }
         }
 
+
+        //define a function called kenneth
+        fun kenneth(){
+            //do something
+        }
+
+        //initiate a function called cindy
+        fun cindy(){
+            //do something
+        }
+
+        //function called mike
+        fun mike(){
+            //do something
+        }
+        // funsion called joshua
+        fun joshua(){
+            //do something
+        }
     }
+
+    // create an inline class called ServiceWrapper
 }
 
 
