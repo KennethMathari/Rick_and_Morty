@@ -10,6 +10,14 @@ import com.kennethmathari.rickandmorty.R
 
 class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_character_list, container, false)
+    }
+
 }
 
 

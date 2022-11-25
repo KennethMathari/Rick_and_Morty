@@ -10,4 +10,12 @@ import com.kennethmathari.rickandmorty.R
 
 class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_character_detail, container, false)
+    }
+
 }

@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RickAndMorty"
         tools:targetApi="31">
+
         <activity
-            android:name=".views.activity.CharacterListActivity"
+            android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +26,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".views.activity.MainActivity"
-            android:exported="true">
-        </activity>
     </application>
 
 </manifest>
