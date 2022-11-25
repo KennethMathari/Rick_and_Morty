@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.kennethmathari.rickandmorty.CharacterListFragment"
+        android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterListFragment"
         android:label="fragment_character_list"
-        tools:layout="@layout/activity_character_list" >
+        tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.kennethmathari.rickandmorty.CharacterDetailFragment"
+        android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterDetailFragment"
         android:label="fragment_character_detail"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/fragment_character_detail" />
 </navigation>
