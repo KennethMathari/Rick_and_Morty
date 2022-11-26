@@ -1,7 +1,9 @@
 package com.kennethmathari.rickandmorty.views.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.kennethmathari.rickandmorty.R
@@ -19,8 +21,17 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         CharactersListViewModel()
     }
 
-    private val fragmentCharacterListBinding by lazy {
-        FragmentCharacterListBinding.inflate(layoutInflater)
+    private var _fragmentCharacterListBinding: FragmentCharacterListBinding? = null
+    private val fragmentCharacterListBinding get() = _fragmentCharacterListBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        _fragmentCharacterListBinding =
+            FragmentCharacterListBinding.inflate(inflater, container, false)
+        return fragmentCharacterListBinding?.root
     }
 
 
@@ -28,7 +39,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
 
-        fragmentCharacterListBinding.epoxyRecyclerView.setControllerAndBuildModels(
+        fragmentCharacterListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(
             characterlistPagingEpoxyController)
     }
 
@@ -44,6 +55,11 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                 characterId)
         findNavController().navigate(action)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentCharacterListBinding = null
     }
 
 }

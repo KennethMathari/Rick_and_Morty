@@ -1,10 +1,8 @@
 package com.kennethmathari.rickandmorty.views.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentCharacterDetailBinding
@@ -27,7 +25,7 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
         CharacterDetailsEpoxyController()
     }
 
-     val args: CharacterDetailFragmentArgs by navArgs()
+    val args: CharacterDetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +45,7 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
             epoxyController.character = character
 
             //Check if the character result is null
-            if (character == null){
+            if (character == null) {
                 //Show a snackbar with the error message
                 showSnackBar("Error fetching character")
                 return@observe
