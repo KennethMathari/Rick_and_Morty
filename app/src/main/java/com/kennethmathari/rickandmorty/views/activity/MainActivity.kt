@@ -1,68 +1,22 @@
 package com.kennethmathari.rickandmorty.views.activity
 
 import android.os.Bundle
-import android.view.MenuItem
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
-import com.kennethmathari.rickandmorty.databinding.ActivityMainBinding
-import com.kennethmathari.rickandmorty.utils.Constants
-import com.kennethmathari.rickandmorty.utils.showSnackBar
-import com.kennethmathari.rickandmorty.viewmodel.CharacterViewModel
-import com.kennethmathari.rickandmorty.views.epoxy.CharacterDetailsEpoxyController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.kennethmathari.rickandmorty.R
 
-class MainActivity : AppCompatActivity() {
-    private val activityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
-    private val characterViewModel: CharacterViewModel by lazy {
-        CharacterViewModel()
-    }
+class MainActivity: AppCompatActivity() {
 
-    private val epoxyController by lazy {
-        CharacterDetailsEpoxyController()
-    }
+    lateinit var navController: NavController
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(activityMainBinding.root)
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        setContentView(R.layout.activity_main)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        initObserver()
-
-        val characterIDFromIntent = intent.getIntExtra(Constants.INTENT_CHARACTERID,1)
-        characterViewModel.getCharacterbyId(characterIDFromIntent)
-
-        activityMainBinding.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
-
-    }
-
-    private fun initObserver() {
-        //Observe the character result live data from the view model
-        characterViewModel.characterResult.observe(this) { character ->
-
-            //Set the character result to the epoxy controller
-            epoxyController.character = character
-
-            //Check if the character result is null
-            if (character == null){
-                //Show a snackbar with the error message
-                showSnackBar("Error fetching character")
-                return@observe
-            }
-
-        }
-    }
-
-    /**
-     * Enable back navigation to CharacterList from action bar
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            android.R.id.home ->{
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
     }
 }
