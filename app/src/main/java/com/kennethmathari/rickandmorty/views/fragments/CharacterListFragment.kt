@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentCharacterListBinding
 import com.kennethmathari.rickandmorty.viewmodel.CharactersListViewModel
 import com.kennethmathari.rickandmorty.views.epoxy.CharacterListPagingEpoxyController
 
 
-class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
+class CharacterListFragment : Fragment() {
     private val characterlistPagingEpoxyController =
         CharacterListPagingEpoxyController(::onCharacterSelected)
 
@@ -34,14 +33,6 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return fragmentCharacterListBinding?.root
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initObservers()
-
-        fragmentCharacterListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(
-            characterlistPagingEpoxyController)
-    }
 
     private fun initObservers() {
         charactersListViewModel.charactersPagedListLiveData.observe(viewLifecycleOwner) {
