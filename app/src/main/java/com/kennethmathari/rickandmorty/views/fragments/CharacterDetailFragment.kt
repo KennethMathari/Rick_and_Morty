@@ -41,8 +41,7 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
 
-        val characterIdFragmentArgs = args.characterId
-        characterViewModel.getCharacterbyId(characterIdFragmentArgs)
+        characterViewModel.getCharacterbyId(args.characterId)
 
         fragmentCharacterDetailBinding?.epoxyRecyclerView?.setControllerAndBuildModels(epoxyController)
     }
