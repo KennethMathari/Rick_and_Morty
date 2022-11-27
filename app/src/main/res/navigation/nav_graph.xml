@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterListFragment"
-        android:label="fragment_character_list"
+        android:label="Characters"
         tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterDetailFragment"
-        android:label="fragment_character_detail"
+        android:label="Character Details"
         tools:layout="@layout/fragment_character_detail" >
         <argument
             android:name="characterId"

@@ -1,7 +1,9 @@
 package com.kennethmathari.rickandmorty.views.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kennethmathari.rickandmorty.R
@@ -13,9 +15,8 @@ import com.kennethmathari.rickandmorty.views.epoxy.CharacterDetailsEpoxyControll
 
 class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
-    private val fragmentCharacterDetailBinding by lazy {
-        FragmentCharacterDetailBinding.inflate(layoutInflater)
-    }
+    private var _fragmentCharacterDetailBinding: FragmentCharacterDetailBinding? =null
+    private val fragmentCharacterDetailBinding get() = _fragmentCharacterDetailBinding
 
     private val characterViewModel: CharacterViewModel by lazy {
         CharacterViewModel()
@@ -27,6 +28,15 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
     val args: CharacterDetailFragmentArgs by navArgs()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _fragmentCharacterDetailBinding= FragmentCharacterDetailBinding.inflate(inflater,container,false)
+        return fragmentCharacterDetailBinding?.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
@@ -34,7 +44,7 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
         val characterIdFragmentArgs = args.characterId
         characterViewModel.getCharacterbyId(characterIdFragmentArgs)
 
-        fragmentCharacterDetailBinding.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+        fragmentCharacterDetailBinding?.epoxyRecyclerView?.setControllerAndBuildModels(epoxyController)
     }
 
     private fun initObserver() {
@@ -52,6 +62,11 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
             }
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentCharacterDetailBinding = null
     }
 
 }
