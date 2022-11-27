@@ -8,22 +8,15 @@
     tools:context=".views.fragments.CharacterListFragment">
 
 
-<!--    <com.airbnb.epoxy.EpoxyRecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/epoxyRecyclerView"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--        app:spanCount="2"-->
-<!--        app:itemSpacing="10dp"-->
-<!--        tools:itemCount="20"-->
-<!--        android:padding="8dp"-->
-<!--        tools:listitem="@layout/character_item"/>-->
-
-    <TextView
+    <com.airbnb.epoxy.EpoxyRecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test hey Kenneth Mathari"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/epoxyRecyclerView"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        app:itemSpacing="10dp"
+        tools:itemCount="20"
+        android:padding="8dp"
+        tools:listitem="@layout/character_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

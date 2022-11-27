@@ -33,6 +33,12 @@ class CharacterListFragment : Fragment() {
         return fragmentCharacterListBinding?.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
+        fragmentCharacterListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(characterlistPagingEpoxyController)
+    }
+
 
     private fun initObservers() {
         charactersListViewModel.charactersPagedListLiveData.observe(viewLifecycleOwner) {
