@@ -9,7 +9,7 @@
         android:id="@+id/characterListFragment"
         android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterListFragment"
         android:label="Characters"
-        tools:layout="@layout/fragment_character_list" >
+        tools:layout="@layout/fragment_character_list">
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment"
@@ -22,7 +22,9 @@
         android:id="@+id/characterDetailFragment"
         android:name="com.kennethmathari.rickandmorty.views.fragments.CharacterDetailFragment"
         android:label="Character Details"
-        tools:layout="@layout/fragment_character_detail" >
+        tools:layout="@layout/fragment_character_detail">
+
+        <deepLink app:uri="https://simplemorty.com/character/{characterId}" />
         <argument
             android:name="characterId"
             app:argType="integer" />
