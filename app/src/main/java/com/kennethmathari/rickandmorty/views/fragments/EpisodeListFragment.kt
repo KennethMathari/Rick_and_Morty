@@ -13,7 +13,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
     private var _fragmentEpisodeListBinding: FragmentEpisodeListBinding? = null
     private val fragmentEpisodeListBinding get() = _fragmentEpisodeListBinding
-    
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
