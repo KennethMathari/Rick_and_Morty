@@ -7,12 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentEpisodeListBinding
+import com.kennethmathari.rickandmorty.viewmodel.EpisodeListViewModel
+import com.kennethmathari.rickandmorty.views.epoxy.EpisodeListPagingEpoxyController
 
 
 class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
     private var _fragmentEpisodeListBinding: FragmentEpisodeListBinding? = null
     private val fragmentEpisodeListBinding get() = _fragmentEpisodeListBinding
+
+    private val episodeListViewModel by lazy {
+        EpisodeListViewModel()
+    }
+
+    private val episodeListPagingEpoxyController by lazy {
+        EpisodeListPagingEpoxyController()
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
