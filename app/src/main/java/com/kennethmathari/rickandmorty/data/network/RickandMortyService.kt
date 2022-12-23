@@ -28,4 +28,7 @@ interface RickandMortyService {
     suspend fun getEpisodeRange(
         @Path("episode-range")episodeRange: String
     ): Response<List<Episode>>
+
+    @GET("episode")
+    suspend fun getEpisodeList():Response<List<Episode>>
 }

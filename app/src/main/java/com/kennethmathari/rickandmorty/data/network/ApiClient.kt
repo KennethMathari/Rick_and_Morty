@@ -23,6 +23,10 @@ class ApiClient(private val rickandMortyService: RickandMortyService) {
         return safeApiCall { rickandMortyService.getEpisodeRange(episodeRange) }
     }
 
+    suspend fun getEpisodeList():SimpleResponse<List<Episode>>{
+        return safeApiCall { rickandMortyService.getEpisodeList() }
+    }
+
     /**
      * This function is used to make a safe API call
      */
