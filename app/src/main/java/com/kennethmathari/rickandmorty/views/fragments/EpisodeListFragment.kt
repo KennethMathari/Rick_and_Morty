@@ -28,6 +28,9 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
         super.onViewCreated(view, savedInstanceState)
         _fragmentEpisodeListBinding = FragmentEpisodeListBinding.bind(view)
         initObservers()
+
+        episodeListViewModel.getEpisodeList()
+
         fragmentEpisodeListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(
             episodeListPagingEpoxyController)
     }

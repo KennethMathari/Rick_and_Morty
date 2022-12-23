@@ -8,11 +8,13 @@ class EpisodeListRepository {
     suspend fun getEpisodeList():List<EpisodeDomainModel>{
         val request = RetrofitInstance.apiClient.getEpisodeList()
 
+        lateinit var episodeItem:EpisodeDomainModel
 
         for (episode in request.body){
-           return  EpisodeMapper.buildFrom(episode)
+           episodeItem=  EpisodeMapper.buildFrom(episode)
         }
 
+        return listOf(episodeItem)
 
         }
 
