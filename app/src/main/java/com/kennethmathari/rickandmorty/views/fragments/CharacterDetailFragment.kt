@@ -1,9 +1,7 @@
 package com.kennethmathari.rickandmorty.views.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kennethmathari.rickandmorty.R
@@ -15,7 +13,7 @@ import com.kennethmathari.rickandmorty.views.epoxy.CharacterDetailsEpoxyControll
 
 class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
-    private var _fragmentCharacterDetailBinding: FragmentCharacterDetailBinding? =null
+    private var _fragmentCharacterDetailBinding: FragmentCharacterDetailBinding? = null
     private val fragmentCharacterDetailBinding get() = _fragmentCharacterDetailBinding
 
     private val characterViewModel: CharacterViewModel by lazy {
@@ -28,22 +26,15 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
     val args: CharacterDetailFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _fragmentCharacterDetailBinding= FragmentCharacterDetailBinding.inflate(inflater,container,false)
-        return fragmentCharacterDetailBinding?.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
+        _fragmentCharacterDetailBinding = FragmentCharacterDetailBinding.bind(view)
 
         characterViewModel.getCharacterbyId(args.characterId)
 
-        fragmentCharacterDetailBinding?.epoxyRecyclerView?.setControllerAndBuildModels(epoxyController)
+        fragmentCharacterDetailBinding?.epoxyRecyclerView?.setControllerAndBuildModels(
+            epoxyController)
     }
 
     private fun initObserver() {

@@ -11,10 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/epoxyRecyclerView"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:itemSpacing="10dp"
         tools:itemCount="20"
         android:padding="8dp"
-        tools:listitem="@layout/character_item"/>
+        tools:listitem="@layout/episode_item"/>
 
 </FrameLayout>
