@@ -3,10 +3,12 @@
 
     <item
         android:id="@+id/characterListFragment"
-        android:title="Characters" />
+        android:title="Characters"
+        android:icon="@drawable/ic_characters"/>
 
     <item
         android:id="@+id/episodeListFragment"
-        android:title="Episodes" />
+        android:title="Episodes"
+        android:icon="@drawable/ic_episodes"/>
 
 </menu>
