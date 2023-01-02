@@ -3,6 +3,7 @@ package com.kennethmathari.rickandmorty.views.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentCharacterDetailBinding
@@ -48,6 +49,7 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
             if (character == null) {
                 //Show a snackbar with the error message
                 showSnackBar("Error fetching character")
+                findNavController().navigateUp()
                 return@observe
             }
 
