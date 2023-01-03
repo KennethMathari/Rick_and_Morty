@@ -21,27 +21,22 @@ class CharacterViewModel : ViewModel() {
     /**
      * Fetches character details by Id from the API via the [CharacterRepository]
      */
-    fun getCharacterbyId(characterId: Int) {
+    fun getCharacterbyId(characterId: Int)= viewModelScope.launch {
 
-        val cachedCharacter = SimpleMortyCache.characterMap[characterId]
+        //Fetch the character details from the Repository Layer
+        val characterResult = characterRepository.getCharacterById(characterId)
 
-        //check cache memory for character
-        if (cachedCharacter != null) {
-            _characterResult.value = cachedCharacter
-            return
+        //Check if the character result is null
+        if (characterResult == null) {
+            //Set the character result to null
+            _characterResult.value = null
+            return@launch
         }
 
-        //Otherwise, make network call
-        viewModelScope.launch {
-            val response = characterRepository.getCharacterById(characterId)
-            _characterResult.value = response
-
-            //Save to cache if response is not null
-            response?.let {
-                SimpleMortyCache.characterMap[characterId] = it
-            }
-        }
+        //Set the character result to the character result
+        _characterResult.value = characterResult
     }
+
 }
 
 
