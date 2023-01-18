@@ -3,6 +3,7 @@ package com.kennethmathari.rickandmorty.data.network
 import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.model.CharactersList
 import com.kennethmathari.rickandmorty.data.model.Episode
+import com.kennethmathari.rickandmorty.data.model.EpisodesPageList
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -30,5 +31,7 @@ interface RickandMortyService {
     ): Response<List<Episode>>
 
     @GET("episode")
-    suspend fun getEpisodeList():Response<List<Episode>>
+    suspend fun getEpisodeList(
+        @Query("page") pageIndex: Int
+    ):Response<EpisodesPageList>
 }

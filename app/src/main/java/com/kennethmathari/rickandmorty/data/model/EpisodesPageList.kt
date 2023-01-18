@@ -1,8 +1,6 @@
 package com.kennethmathari.rickandmorty.data.model
 
-
-
-data class CharactersList(
+data class EpisodesPageList(
     val info: PageInfo = PageInfo(),
-    val results: List<Character> = emptyList()
+    val results: List<Episode> = emptyList()
 )

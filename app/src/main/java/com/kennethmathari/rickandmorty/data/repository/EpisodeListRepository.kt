@@ -1,21 +1,19 @@
 package com.kennethmathari.rickandmorty.data.repository
 
+import com.kennethmathari.rickandmorty.data.model.EpisodesPageList
 import com.kennethmathari.rickandmorty.data.network.RetrofitInstance
 import com.kennethmathari.rickandmorty.domain.mappers.EpisodeMapper
 import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
 
 class EpisodeListRepository {
-    suspend fun getEpisodeList():List<EpisodeDomainModel>{
-        val request = RetrofitInstance.apiClient.getEpisodeList()
+    suspend fun getEpisodePagedList(pageIndex: Int):EpisodesPageList? {
+        val request = RetrofitInstance.apiClient.getEpisodePagedList(pageIndex)
 
-        if (request.failed || !request.isSuccessful) {
-            return emptyList()
+        if (!request.isSuccessful) {
+            return null
         }
 
-        return request.body.map {
-            EpisodeMapper.buildFrom(it)
-        }
-
-        }
+        return request.body
+    }
 
 }

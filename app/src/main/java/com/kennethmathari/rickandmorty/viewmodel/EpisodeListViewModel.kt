@@ -17,7 +17,7 @@ class EpisodeListViewModel: ViewModel() {
 
     fun getEpisodeList(){
         viewModelScope.launch {
-            val response = episodeListRepository.getEpisodeList()
+            val response = episodeListRepository.getEpisodePagedList()
             _episodeListResult.value = response
         }
 
