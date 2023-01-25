@@ -1,62 +1,37 @@
 package com.kennethmathari.rickandmorty.views.epoxy
 
-import com.airbnb.epoxy.EpoxyController
+import com.airbnb.epoxy.EpoxyModel
+import com.airbnb.epoxy.paging3.PagingDataEpoxyController
 import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.EpisodeItemBinding
 import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 
-class EpisodeListPagingEpoxyController : EpoxyController() {
+@ObsoleteCoroutinesApi
+class EpisodeListPagingEpoxyController : PagingDataEpoxyController<EpisodeDomainModel>() {
 
-    var isLoading = false
-        set(value) {
-            field = value
-            if (field) {
-                requestModelBuild()
+    override fun buildItemModel(currentPosition: Int, item: EpisodeDomainModel?): EpoxyModel<*> {
+        return EpisodeListItemEpoxyModel(
+            episode = item!!,
+            onClick = { episodeId ->
+                //todo
             }
-        }
-
-    var episodeList: List<EpisodeDomainModel>? = null
-        set(value) {
-            field = value
-            if (field != null) {
-                isLoading = false
-                requestModelBuild()
-            }
-        }
-
-    override fun buildModels() {
-        if (isLoading) {
-            LoadingEpoxyModel()
-                .id("loading")
-                .addTo(this)
-            return
-        }
-
-        if (episodeList == null) {
-            //show error
-            return
-        }
-
-        for (episode in episodeList!!) {
-            EpisodeItemEpoxyModel(
-                episodeId = episode.id,
-                episodeName = episode.name,
-                episodeCode = episode.episode
-            ).id("episode-item").addTo(this)
-        }
-
+        ).id("episode_${item.id}")
     }
 
 
-    data class EpisodeItemEpoxyModel(
-        val episodeId: Int,
-        val episodeName: String,
-        val episodeCode: String,
+    data class EpisodeListItemEpoxyModel(
+        val episode: EpisodeDomainModel,
+        val onClick: (Int) -> Unit
     ) : ViewBindingKotlinModel<EpisodeItemBinding>(R.layout.episode_item) {
         override fun EpisodeItemBinding.bind() {
-            episodeCodeTV.text = episodeCode
-            episodeNameTV.text = episodeName
-        }
+            episodeCodeTV.text = episode.episode
+            episodeNameTV.text = episode.name
 
+            root.setOnClickListener {
+                onClick(episode.id)
+            }
+        }
     }
+
 }

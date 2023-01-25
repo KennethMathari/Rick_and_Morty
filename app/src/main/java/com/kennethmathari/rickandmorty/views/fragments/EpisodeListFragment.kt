@@ -3,11 +3,16 @@ package com.kennethmathari.rickandmorty.views.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentEpisodeListBinding
+import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
 import com.kennethmathari.rickandmorty.utils.showSnackBar
 import com.kennethmathari.rickandmorty.viewmodel.EpisodeListViewModel
 import com.kennethmathari.rickandmorty.views.epoxy.EpisodeListPagingEpoxyController
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
@@ -27,27 +32,16 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _fragmentEpisodeListBinding = FragmentEpisodeListBinding.bind(view)
-        initObservers()
 
-        episodeListViewModel.getEpisodeList()
+        lifecycleScope.launch {
+            episodeListViewModel.flow.collectLatest {pagingData: PagingData<EpisodeDomainModel> ->
+                episodeListPagingEpoxyController.submitData(pagingData)
+            }
+        }
+
 
         fragmentEpisodeListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(
             episodeListPagingEpoxyController)
-    }
-
-    private fun initObservers() {
-        episodeListViewModel.episodeListResult.observe(viewLifecycleOwner) { episodeList ->
-
-            //set the episode list data response to the epoxy controller
-            episodeListPagingEpoxyController.episodeList = episodeList
-
-            // Display error message is episode list data is null
-            if (episodeList == null) {
-                showSnackBar("Error fetching episodes")
-                return@observe
-            }
-
-        }
     }
 
     override fun onDestroy() {
