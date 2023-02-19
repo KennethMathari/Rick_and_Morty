@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
 import com.kennethmathari.rickandmorty.data.pagingsource.EpisodesPagingSource
 import com.kennethmathari.rickandmorty.data.repository.EpisodeListRepository
 import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
 import com.kennethmathari.rickandmorty.utils.Constants
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlin.reflect.jvm.internal.impl.load.java.Constant
 
@@ -27,6 +29,10 @@ class EpisodeListViewModel: ViewModel() {
     ) {
         EpisodesPagingSource()
     }.flow
-        .cachedIn(viewModelScope)
+        .cachedIn(viewModelScope).map {
+            it.insertSeparators{episode: EpisodeDomainModel?,episode2: EpisodeDomainModel?->
+
+            }
+        }
 
 }

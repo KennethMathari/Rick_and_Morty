@@ -5,10 +5,11 @@ import androidx.paging.PagingState
 import com.kennethmathari.rickandmorty.data.network.RetrofitInstance
 import com.kennethmathari.rickandmorty.domain.mappers.EpisodeMapper
 import com.kennethmathari.rickandmorty.domain.models.EpisodeDomainModel
+import com.kennethmathari.rickandmorty.utils.EpisodesUIModel
 
-class EpisodesPagingSource() : PagingSource<Int, EpisodeDomainModel>() {
+class EpisodesPagingSource() : PagingSource<Int, EpisodesUIModel>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeDomainModel> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodesUIModel> {
         // Start refresh at page 1 if undefined.
         val nextPageNumber = params.key ?: 1
         val prevPageNumber = if (nextPageNumber == 1) null else nextPageNumber - 1

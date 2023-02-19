@@ -30,6 +30,12 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         _fragmentCharacterListBinding = FragmentCharacterListBinding.bind(view)
         initObservers()
         fragmentCharacterListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(characterlistPagingEpoxyController)
+
+        fragmentCharacterListBinding?.swiperefresh?.setOnRefreshListener {
+            initObservers()
+            fragmentCharacterListBinding?.epoxyRecyclerView?.setControllerAndBuildModels(characterlistPagingEpoxyController)
+            fragmentCharacterListBinding!!.swiperefresh.isRefreshing = false
+        }
     }
 
 
