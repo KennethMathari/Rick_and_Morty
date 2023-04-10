@@ -9,10 +9,14 @@ import com.kennethmathari.rickandmorty.data.model.Character
 import com.kennethmathari.rickandmorty.data.pagingsource.CharactersDataSourceFactory
 import com.kennethmathari.rickandmorty.data.repository.CharactersListRepository
 import com.kennethmathari.rickandmorty.utils.Constants
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CharactersListViewModel : ViewModel() {
+@HiltViewModel
+class CharactersListViewModel @Inject constructor(
+    charactersListRepository: CharactersListRepository
+) : ViewModel() {
 
-    private val charactersListRepository = CharactersListRepository()
 
     private val pageListConfig: PagedList.Config = PagedList.Config.Builder()
         .setPageSize(Constants.PAGE_SIZE)

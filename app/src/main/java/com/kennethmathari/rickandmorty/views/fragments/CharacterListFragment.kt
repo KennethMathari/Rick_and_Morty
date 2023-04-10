@@ -10,16 +10,15 @@ import com.kennethmathari.rickandmorty.R
 import com.kennethmathari.rickandmorty.databinding.FragmentCharacterListBinding
 import com.kennethmathari.rickandmorty.viewmodel.CharactersListViewModel
 import com.kennethmathari.rickandmorty.views.epoxy.CharacterListPagingEpoxyController
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
     private val characterlistPagingEpoxyController =
         CharacterListPagingEpoxyController(::onCharacterSelected)
 
-
-    private val charactersListViewModel by lazy {
-        CharactersListViewModel()
-    }
+    @Inject lateinit var charactersListViewModel: CharactersListViewModel
 
     private var _fragmentCharacterListBinding: FragmentCharacterListBinding? = null
     private val fragmentCharacterListBinding get() = _fragmentCharacterListBinding
